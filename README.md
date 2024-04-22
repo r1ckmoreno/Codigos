@@ -1,47 +1,26 @@
-abstract class Veiculo {
-    private String modelo;
-    private String marca;
-    private int anoFabricacao;
-    private boolean disponivel;
+class Carro extends Veiculo implements Alugavel {
+    private int quantidadePortas;
 
     // Construtor
-    public Veiculo(String modelo, String marca, int anoFabricacao) {
-        this.modelo = modelo;
-        this.marca = marca;
-        this.anoFabricacao = anoFabricacao;
-        this.disponivel = true; // Por padrão, o veículo está disponível para aluguel
+    public Carro(String modelo, String marca, int anoFabricacao, int quantidadePortas) {
+        super(modelo, marca, anoFabricacao);
+        this.quantidadePortas = quantidadePortas;
     }
 
-    // Getters e setters
-    public String getModelo() {
-        return modelo;
+    // Implementação dos métodos da interface Alugavel
+    @Override
+    public void alugar() {
+        if (isDisponivel()) {
+            setDisponivel(false);
+            System.out.println("Carro alugado.");
+        } else {
+            System.out.println("Carro indisponível para aluguel.");
+        }
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public int getAnoFabricacao() {
-        return anoFabricacao;
-    }
-
-    public void setAnoFabricacao(int anoFabricacao) {
-        this.anoFabricacao = anoFabricacao;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
+    @Override
+    public void devolver() {
+        setDisponivel(true);
+        System.out.println("Carro devolvido.");
     }
 }

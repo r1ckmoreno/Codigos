@@ -1,26 +1,15 @@
-class Caminhao extends Veiculo implements Alugavel {
-    private int capacidadeCarga;
+public class Main {
+    public static void main(String[] args) {
+        Carro carro = new Carro("Fiesta", "Ford", 2019, 4);
+        Van van = new Van("Sprinter", "Mercedes", 2020, 1500);
+        Caminhao caminhao = new Caminhao("FH", "Volvo", 2021, 10000);
 
-    // Construtor
-    public Caminhao(String modelo, String marca, int anoFabricacao, int capacidadeCarga) {
-        super(modelo, marca, anoFabricacao);
-        this.capacidadeCarga = capacidadeCarga;
-    }
+        carro.alugar();
+        van.alugar();
+        caminhao.alugar();
 
-    // Implementação dos métodos da interface Alugavel
-    @Override
-    public void alugar() {
-        if (isDisponivel()) {
-            setDisponivel(false);
-            System.out.println("Caminhão alugado.");
-        } else {
-            System.out.println("Caminhão indisponível para aluguel.");
-        }
-    }
-
-    @Override
-    public void devolver() {
-        setDisponivel(true);
-        System.out.println("Caminhão devolvido.");
+        carro.devolver();
+        van.devolver();
+        caminhao.devolver();
     }
 }

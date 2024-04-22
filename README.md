@@ -1,8 +1,8 @@
-class Van extends Veiculo implements Alugavel {
+class Caminhao extends Veiculo implements Alugavel {
     private int capacidadeCarga;
 
     // Construtor
-    public Van(String modelo, String marca, int anoFabricacao, int capacidadeCarga) {
+    public Caminhao(String modelo, String marca, int anoFabricacao, int capacidadeCarga) {
         super(modelo, marca, anoFabricacao);
         this.capacidadeCarga = capacidadeCarga;
     }
@@ -12,15 +12,15 @@ class Van extends Veiculo implements Alugavel {
     public void alugar() {
         if (isDisponivel()) {
             setDisponivel(false);
-            System.out.println("Van alugada.");
+            System.out.println("Caminhão alugado.");
         } else {
-            System.out.println("Van indisponível para aluguel.");
+            System.out.println("Caminhão indisponível para aluguel.");
         }
     }
 
     @Override
     public void devolver() {
         setDisponivel(true);
-        System.out.println("Van devolvida.");
+        System.out.println("Caminhão devolvido.");
     }
 }

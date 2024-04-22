@@ -1,18 +1,15 @@
-interface Promocao {
-    double calcularDesconto();
-}
-
-class ProdutoEletronico implements Promocao {
+abstract class Veiculo {
     private String modelo;
     private String marca;
-    private double preco;
-    private boolean emPromocao;
+    private int anoFabricacao;
+    private boolean disponivel;
 
-    public ProdutoEletronico(String modelo, String marca, double preco) {
+    // Construtor
+    public Veiculo(String modelo, String marca, int anoFabricacao) {
         this.modelo = modelo;
         this.marca = marca;
-        this.preco = preco;
-        this.emPromocao = false;
+        this.anoFabricacao = anoFabricacao;
+        this.disponivel = true; // Por padrão, o veículo está disponível para aluguel
     }
 
     // Getters e setters
@@ -32,39 +29,19 @@ class ProdutoEletronico implements Promocao {
         this.marca = marca;
     }
 
-    public double getPreco() {
-        return preco;
+    public int getAnoFabricacao() {
+        return anoFabricacao;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setAnoFabricacao(int anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
     }
 
-    public boolean isEmPromocao() {
-        return emPromocao;
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    public void setEmPromocao(boolean emPromocao) {
-        this.emPromocao = emPromocao;
-    }
-
-    @Override
-    public double calcularDesconto() {
-        if (emPromocao) {
-            return preco * 0.9; // Desconto de 10%
-        } else {
-            return preco;
-        }
-    }
-}
-
-// Exemplo de uso:
-public class Main {
-    public static void main(String[] args) {
-        ProdutoEletronico produto = new ProdutoEletronico("ModeloX", "MarcaY", 1000.0);
-
-        produto.setEmPromocao(true);
-
-        System.out.println("Preço do produto: " + produto.calcularDesconto());
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 }

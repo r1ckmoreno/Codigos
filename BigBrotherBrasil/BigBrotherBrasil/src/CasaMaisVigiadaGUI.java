@@ -45,16 +45,19 @@ public class CasaMaisVigiadaGUI {
         frame.setLocationRelativeTo(null); // Centraliza a janela
 
         // Painel para botões
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Layout vertical
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0)); // Adiciona espaço entre os botões
 
         // Botão para votar
         JButton voteButton = new JButton("Votar");
+        voteButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Centraliza o botão horizontalmente
         voteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String voto;
                 do {
-                    voto = JOptionPane.showInputDialog(null, "Em quem você vota para sair da casa? ");
+                    voto = JOptionPane.showInputDialog(null, "Em quem você vota para sair da casa? (Digite 'sair' para cancelar)");
                     if (voto != null && !voto.equalsIgnoreCase("sair")) {
                         boolean encontrado = false;
                         for (Jogador jogador : jogadores) {
@@ -75,6 +78,7 @@ public class CasaMaisVigiadaGUI {
 
         // Botão para apurar resultado
         JButton resultButton = new JButton("Apurar resultado");
+        resultButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Centraliza o botão horizontalmente
         resultButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,6 +100,7 @@ public class CasaMaisVigiadaGUI {
 
         // Adicionar botões ao painel
         buttonPanel.add(voteButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Adiciona espaço entre os botões
         buttonPanel.add(resultButton);
 
         // Adicionar painel de botões ao frame
